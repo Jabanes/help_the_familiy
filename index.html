@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>עמדו לצד המשפחה · קמפיין תרומות</title>
+<meta name="description" content="קמפיין גיוס תרומות לטובת ייצוג משפטי של משפחה בצרה. כל תרומה עוזרת לאם ולשלושת ילדיה לעבור את התקופה הקשה הזו." />
+<meta name="theme-color" content="#fbf8f3" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="עמדו לצד המשפחה" />
+<meta property="og:description" content="כי בשעה הקשה ביותר — אף משפחה לא צריכה לעמוד לבד." />
+<meta property="og:locale" content="he_IL" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Frank+Ruhl+Libre:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* Color */
+    --bg: #faf7f1;
+    --bg-soft: #ffffff;
+    --bg-warm: #fdf9ee;
+    --ink: #1a1d28;
+    --ink-soft: #4a5061;
+    --muted: #898d99;
+    --line: #ece6da;
+    --line-soft: #f3eee2;
+    --gold: #c89518;
+    --gold-deep: #a17710;
+    --gold-soft: #fdf3d4;
+    --gold-bg: #fcf6e2;
+    --accent: #2563eb;
+    --accent-soft: #eaf0ff;
+    --success: #059669;
+
+    /* Shadow — layered for depth */
+    --shadow-xs: 0 1px 2px rgba(26, 29, 40, 0.04);
+    --shadow-sm: 0 1px 2px rgba(26, 29, 40, 0.04), 0 1px 3px rgba(26, 29, 40, 0.05);
+    --shadow-md: 0 1px 2px rgba(26, 29, 40, 0.04), 0 4px 12px rgba(26, 29, 40, 0.05), 0 8px 24px -8px rgba(26, 29, 40, 0.06);
+    --shadow-lg: 0 1px 2px rgba(26, 29, 40, 0.04), 0 12px 28px rgba(26, 29, 40, 0.08), 0 24px 48px -12px rgba(26, 29, 40, 0.08);
+
+    /* Radius */
+    --radius: 18px;
+    --radius-sm: 12px;
+    --radius-xs: 8px;
+
+    /* Easing — Emil Kowalski curves */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Heebo', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 600px at 50% -100px, var(--gold-bg) 0%, transparent 60%),
+      var(--bg);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: var(--gold-soft);
+    color: var(--ink);
+  }
+
+  .serif {
+    font-family: 'Frank Ruhl Libre', 'Heebo', serif;
+    letter-spacing: -0.01em;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  /* Decorative top band */
+  .topband {
+    height: 4px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, #f0c14b 50%, var(--gold) 70%, transparent 100%);
+  }
+
+  /* ============ ENTRY ANIMATION (fade up) ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: revealUp 700ms var(--ease-out) forwards;
+  }
+  .reveal-d1 { animation-delay: 60ms; }
+  .reveal-d2 { animation-delay: 130ms; }
+  .reveal-d3 { animation-delay: 200ms; }
+  .reveal-d4 { animation-delay: 280ms; }
+  .reveal-d5 { animation-delay: 360ms; }
+  .reveal-d6 { animation-delay: 440ms; }
+
+  @keyframes revealUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 64px 0 28px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: var(--gold-soft);
+    margin-bottom: 24px;
+    font-size: 36px;
+    box-shadow:
+      0 0 0 1px rgba(200, 149, 24, 0.12),
+      0 0 0 8px rgba(200, 149, 24, 0.06),
+      inset 0 -2px 4px rgba(200, 149, 24, 0.08);
+    animation: gentle-pulse 4s var(--ease-in-out) infinite;
+  }
+
+  @keyframes gentle-pulse {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(200, 149, 24, 0.12), 0 0 0 8px rgba(200, 149, 24, 0.06), inset 0 -2px 4px rgba(200, 149, 24, 0.08); }
+    50%      { box-shadow: 0 0 0 1px rgba(200, 149, 24, 0.16), 0 0 0 14px rgba(200, 149, 24, 0.04), inset 0 -2px 4px rgba(200, 149, 24, 0.08); }
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--gold-deep);
+    margin-bottom: 16px;
+    padding: 6px 14px;
+    background: var(--gold-soft);
+    border-radius: 999px;
+    border: 1px solid rgba(200, 149, 24, 0.18);
+  }
+
+  h1.title {
+    font-family: 'Frank Ruhl Libre', 'Heebo', serif;
+    font-size: clamp(36px, 6.5vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0 0 16px;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1.title .line,
+  h1.title .accent {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  h1.title .accent {
+    color: var(--gold-deep);
+    background: linear-gradient(180deg, var(--gold-deep) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: clamp(16px, 2.4vw, 19px);
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 0 auto;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  /* ============ STORY ============ */
+  .story { padding: 32px 0 24px; }
+
+  .story-card {
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    padding: 38px 34px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--line);
+    position: relative;
+    text-align: center;
+  }
+
+  .story p {
+    margin: 0 0 18px;
+    color: var(--ink-soft);
+    font-size: 17px;
+    line-height: 1.85;
+    text-align: center;
+  }
+
+  .story p:last-child { margin-bottom: 0; }
+
+  .story strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .story-lead {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 22px !important;
+    color: var(--ink) !important;
+    line-height: 1.45 !important;
+    font-weight: 700;
+    margin-bottom: 22px !important;
+    text-align: center;
+  }
+
+  .pullquote {
+    margin: 28px auto;
+    padding: 22px 26px;
+    border-top: 3px solid var(--gold);
+    border-bottom: 3px solid var(--gold);
+    background: linear-gradient(180deg, var(--gold-bg) 0%, transparent 100%);
+    border-radius: var(--radius-sm);
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+    position: relative;
+    text-align: center;
+    max-width: 90%;
+  }
+
+  .highlight {
+    background: linear-gradient(180deg, transparent 62%, var(--gold-soft) 62%);
+    padding: 0 4px;
+    font-weight: 600;
+  }
+
+  /* ============ PROGRESS ============ */
+  .progress-section { padding: 28px 0; }
+
+  .progress-card {
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--line);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .progress-percent {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 60px;
+    font-weight: 900;
+    color: var(--gold-deep);
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em;
+    background: linear-gradient(180deg, var(--gold-deep) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 12px;
+    background: var(--line-soft);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    position: relative;
+    box-shadow: inset 0 1px 2px rgba(26, 29, 40, 0.06);
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--gold) 0%, #e6b338 50%, var(--gold) 100%);
+    background-size: 200% 100%;
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(200, 149, 24, 0.35);
+    transition: width 1400ms var(--ease-out);
+    position: relative;
+    animation: shimmer 3.5s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .progress-caption {
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .progress-caption .heart {
+    color: var(--gold-deep);
+    font-size: 14px;
+  }
+
+  /* ============ DONATE ============ */
+  .donate {
+    padding: 40px 0 24px;
+    text-align: center;
+  }
+
+  h2.section-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 900;
+    margin: 0 0 8px;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+
+  .section-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0 0 28px;
+  }
+
+  .donate-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .donate-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .donate-card {
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    padding: 26px 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+    transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .donate-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+  }
+
+  .donate-card::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; left: 0;
+    height: 3px;
+    background: var(--gold);
+  }
+  .donate-card.bit::before { background: var(--accent); }
+
+  .donate-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-xs);
+  }
+
+  .donate-card.bit .donate-icon {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .donate-card.bank .donate-icon {
+    background: var(--gold-soft);
+    color: var(--gold-deep);
+  }
+
+  .donate-card h3 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 22px;
+    font-weight: 900;
+    margin: 0 0 4px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .donate-card .hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+
+  .field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--bg-warm);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    font-size: 15px;
+    transition: border-color 200ms ease, background-color 200ms ease;
+    width: 100%;
+  }
+
+  .field:hover { border-color: var(--line); }
+  .field:last-child { margin-bottom: 0; }
+
+  .field-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .field-value {
+    font-weight: 700;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    direction: ltr;
+    unicode-bidi: embed;
+  }
+
+  .field-value.he { direction: rtl; }
+
+  .copy-btn {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    padding: 6px 11px;
+    border-radius: var(--radius-xs);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: inherit;
+    flex-shrink: 0;
+    transition: transform 160ms var(--ease-out), background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+    will-change: transform;
+    position: relative;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .copy-btn:hover {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+  }
+
+  .copy-btn:active { transform: scale(0.94); }
+
+  .copy-btn.copied {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+  }
+
+  .bit-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    text-align: center;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 13px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 14px;
+    transition: transform 160ms var(--ease-out), background-color 200ms ease, box-shadow 200ms ease;
+    box-shadow: 0 1px 2px rgba(37, 99, 235, 0.18), 0 4px 10px rgba(37, 99, 235, 0.18);
+    will-change: transform;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .bit-cta:hover {
+      background: #1d4ed8;
+      box-shadow: 0 1px 2px rgba(37, 99, 235, 0.22), 0 6px 14px rgba(37, 99, 235, 0.24);
+    }
+  }
+
+  .bit-cta:active { transform: scale(0.97); }
+
+  .trust-note {
+    margin-top: 22px;
+    font-size: 13px;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ============ SHARE ============ */
+  .share { padding: 36px 0; text-align: center; }
+
+  .share-card {
+    background: linear-gradient(135deg, var(--gold-bg) 0%, var(--bg-soft) 100%);
+    border-radius: var(--radius);
+    padding: 38px 28px;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .share-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(400px 200px at 50% 0%, rgba(200, 149, 24, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .share h2 { margin-bottom: 8px; position: relative; }
+
+  .share p {
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+    font-size: 16px;
+    position: relative;
+  }
+
+  .share-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    position: relative;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid var(--line);
+    background: var(--bg-soft);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 160ms var(--ease-out), box-shadow 200ms ease, background-color 200ms ease;
+    will-change: transform;
+    box-shadow: var(--shadow-xs);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .share-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  .share-btn:active { transform: scale(0.97); }
+
+  .share-btn.whatsapp {
+    background: #25D366;
+    color: white;
+    border-color: #25D366;
+    box-shadow: 0 1px 2px rgba(37, 211, 102, 0.2), 0 4px 10px rgba(37, 211, 102, 0.18);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .share-btn.whatsapp:hover {
+      background: #1ebe5a;
+      border-color: #1ebe5a;
+    }
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    text-align: center;
+    padding: 36px 0 56px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  footer .blessing {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 19px;
+    color: var(--gold-deep);
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  /* ============ TOAST ============ */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    background: var(--ink);
+    color: white;
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 100px) scale(0.95);
+    transition: transform 280ms var(--ease-out), opacity 240ms var(--ease-out);
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 520px) {
+    .story-card { padding: 28px 22px; }
+    .progress-percent { font-size: 48px; }
+    .hero { padding: 44px 0 20px; }
+    body { font-size: 16px; }
+  }
+
+  /* ============ REDUCED MOTION ============ */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+    .progress-fill { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topband"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-icon reveal" aria-hidden="true">🤲</div>
+    <!-- <span class="eyebrow reveal reveal-d1">קמפיין גיוס לטובת ייצוג משפטי</span> -->
+    <h1 class="title reveal reveal-d2">
+      <span class="line">עמדו לצד</span>
+      <span class="accent">המשפחה</span>
+    </h1>
+    <p class="subtitle reveal reveal-d3">כי בשעה הקשה ביותר — אף משפחה לא צריכה לעמוד לבד.</p>
+  </div>
+</header>
+
+<!-- STORY -->
+<section class="story">
+  <div class="container">
+    <div class="story-card reveal reveal-d4">
+      <p class="story-lead">יש משפחות שבן לילה — הכל משתנה.</p>
+      <p>
+        אם ואישה לשלושה ילדים מתמודדת בימים אלה עם אחד הרגעים הקשים בחייה. בעלה נעצר ונמצא בהליך משפטי מורכב, והיא נותרה לבדה — מנסה להחזיק את הבית, לשמור על שגרה לילדים, ולממן הגנה משפטית שעלויותיה כבדות מנשוא.
+      </p>
+
+      <div class="pullquote">
+        מדובר במשפחה נורמטיבית שנקלעה לסיטואציה בעל כורחה. כל אחד מאיתנו יכול לעזור להחזיק את המצב עבור הילדים.
+      </div>
+
+      <p>
+        עד כה, עורכי הדין קיבלו <span class="highlight">כשליש בלבד</span> מהסכום הנדרש להמשך הייצוג. בלי השלמת המימון — ההגנה על המשפחה עלולה להיפגע באופן מהותי.
+      </p>
+      <p>
+        ולמשפחה הזו, כמו לכל משפחה, מגיע שמישהו יעמוד לצידה. אם יש בלבכם פינה קטנה של חמלה — <strong>זה הזמן.</strong> כל סכום, כל שיתוף, כל תפילה.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<section class="progress-section" aria-label="התקדמות הקמפיין">
+  <div class="container">
+    <div class="progress-card reveal reveal-d5">
+      <div class="progress-label">גויס עד כה</div>
+      <div class="progress-percent">~33%</div>
+      <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-caption">
+        <span>כל תרומה מקרבת את המשפחה לרגע שבו יוכלו לנשום מחדש</span>
+        <span class="heart" aria-hidden="true">♥</span>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <div class="container">
+    <h2 class="section-title reveal reveal-d5">איך תורמים?</h2>
+    <p class="section-sub reveal reveal-d5">100% מהתרומות מועברות ישירות לשכר טרחת עורכי הדין</p>
+
+    <div class="donate-grid">
+      <!-- BIT -->
+      <div class="donate-card bit reveal reveal-d6">
+        <div class="donate-icon" aria-hidden="true">💙</div>
+        <h3>ביט</h3>
+        <p class="hint">מהיר, פשוט, ישיר</p>
+        <div class="field">
+          <span class="field-label">מספר</span>
+          <span class="field-value" id="bitNumber">050-9155150</span>
+          <button class="copy-btn" data-copy="0509155150" aria-label="העתק מספר ביט">העתק</button>
+        </div>
+        <a class="bit-cta" href="tel:0509155150">
+          <span aria-hidden="true">📱</span>
+          <span>פתח בטלפון</span>
+        </a>
+      </div>
+
+      <!-- BANK -->
+      <div class="donate-card bank reveal reveal-d6">
+        <div class="donate-icon" aria-hidden="true">🏦</div>
+        <h3>העברה בנקאית</h3>
+        <p class="hint">על שם המוטבת בחשבון</p>
+        <div class="field">
+          <span class="field-label">בנק</span>
+          <span class="field-value he">יהב (4)</span>
+        </div>
+        <div class="field">
+          <span class="field-label">סניף</span>
+          <span class="field-value">133</span>
+          <button class="copy-btn" data-copy="133" aria-label="העתק מספר סניף">העתק</button>
+        </div>
+        <div class="field">
+          <span class="field-label">חשבון</span>
+          <span class="field-value">413324783</span>
+          <button class="copy-btn" data-copy="413324783" aria-label="העתק מספר חשבון">העתק</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SHARE -->
+<section class="share">
+  <div class="container">
+    <div class="share-card reveal reveal-d6">
+      <h2 class="section-title">שתפו — זה עוזר יותר ממה שאתם חושבים</h2>
+      <p>כל שיתוף מגיע לעוד לב אחד שאולי יחליט לעזור.<br>אנא העבירו לחברים, למשפחה, ולקבוצות. 🙏</p>
+      <div class="share-buttons">
+        <a class="share-btn whatsapp" id="shareWhatsapp" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          ווטסאפ
+        </a>
+        <button class="share-btn" id="shareCopy">
+          <span aria-hidden="true">🔗</span> העתק קישור
+        </button>
+        <button class="share-btn" id="shareNative">
+          <span aria-hidden="true">📤</span> שתף
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="blessing">תודה מעומק הלב · תבורכו</div>
+    <div>בעבור המשפחה</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">הועתק ללוח 📋</div>
+
+<script>
+  // ===== Toast =====
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+  }
+
+  // ===== Copy buttons =====
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy');
+      try {
+        await navigator.clipboard.writeText(text);
+        const orig = btn.textContent;
+        btn.textContent = 'הועתק ✓';
+        btn.classList.add('copied');
+        showToast('הועתק: ' + text);
+        setTimeout(() => {
+          btn.textContent = orig;
+          btn.classList.remove('copied');
+        }, 1600);
+      } catch (e) {
+        showToast('לא ניתן להעתיק');
+      }
+    });
+  });
+
+  // ===== Share =====
+  const shareText = 'עמדו לצד המשפחה — קמפיין גיוס לייצוג משפטי. כל תרומה עוזרת.';
+  const shareUrl = window.location.href;
+
+  document.getElementById('shareWhatsapp').href =
+    'https://wa.me/?text=' + encodeURIComponent(shareText + ' ' + shareUrl);
+
+  document.getElementById('shareCopy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      showToast('הקישור הועתק ✓');
+    } catch (e) {
+      showToast('לא ניתן להעתיק');
+    }
+  });
+
+  const nativeBtn = document.getElementById('shareNative');
+  if (navigator.share) {
+    nativeBtn.addEventListener('click', () => {
+      navigator.share({
+        title: 'עמדו לצד המשפחה',
+        text: shareText,
+        url: shareUrl
+      }).catch(() => {});
+    });
+  } else {
+    nativeBtn.style.display = 'none';
+  }
+
+  // ===== Progress bar fill (after entry, on next frame, using transition retargeting) =====
+  window.addEventListener('load', () => {
+    const fill = document.getElementById('progressFill');
+    requestAnimationFrame(() => {
+      setTimeout(() => { fill.style.width = '33%'; }, 600);
+    });
+  });
+</script>
+
+</body>
+</html>
