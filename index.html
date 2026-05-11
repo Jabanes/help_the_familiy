@@ -532,6 +532,73 @@
 
   .bit-cta:active { transform: scale(0.97); }
 
+  /* ============ INTERNATIONAL CARD ============ */
+  .intl-card {
+    margin-top: 20px;
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .intl-card::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 100%);
+  }
+
+  .intl-icon {
+    background: linear-gradient(135deg, var(--accent-soft) 0%, var(--gold-soft) 100%);
+  }
+
+  .intl-card h3 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 20px;
+    font-weight: 900;
+    margin: 0 0 4px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .intl-card .hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+
+  .intl-subsection {
+    width: 100%;
+    margin-top: 14px;
+  }
+
+  .intl-sub-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold-deep);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line-soft);
+    text-align: center;
+  }
+
+  .intl-note {
+    margin: 16px 0 0;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
   .trust-note {
     margin-top: 22px;
     font-size: 13px;
@@ -636,6 +703,59 @@
     font-style: italic;
   }
 
+  /* ============ LANGUAGE TOGGLE ============ */
+  .lang-toggle {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 90;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink);
+    transition: transform 200ms var(--ease-out), box-shadow 200ms ease, background-color 200ms ease;
+    padding: 0;
+  }
+
+  .lang-toggle:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+    background: var(--gold-soft);
+  }
+
+  .lang-toggle:active { transform: scale(0.94); }
+
+  .lang-toggle svg {
+    width: 20px;
+    height: 20px;
+    color: var(--gold-deep);
+  }
+
+  .lang-toggle .lang-label {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    background: var(--gold-deep);
+    color: white;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 5px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    border: 2px solid var(--bg-soft);
+  }
+
   /* ============ TOAST ============ */
   .toast {
     position: fixed;
@@ -685,16 +805,26 @@
 
 <div class="topband"></div>
 
+<!-- LANGUAGE TOGGLE -->
+<button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"></circle>
+    <path d="M2 12h20"></path>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+  </svg>
+  <span class="lang-label" id="langLabel">EN</span>
+</button>
+
 <!-- HERO -->
 <header class="hero">
   <div class="container">
     <div class="hero-icon reveal" aria-hidden="true">🤲</div>
     <!-- <span class="eyebrow reveal reveal-d1">קמפיין גיוס לטובת ייצוג משפטי</span> -->
-    <h1 class="title reveal reveal-d2">
+    <h1 class="title reveal reveal-d2" data-en='<span class="line">Stand With</span><span class="accent">The Family</span>'>
       <span class="line">עמדו לצד</span>
       <span class="accent">המשפחה</span>
     </h1>
-    <p class="subtitle reveal reveal-d3">כי בשעה הקשה ביותר — אף משפחה לא צריכה לעמוד לבד.</p>
+    <p class="subtitle reveal reveal-d3" data-en="Because in the hardest of times — no family should stand alone.">כי בשעה הקשה ביותר — אף משפחה לא צריכה לעמוד לבד.</p>
   </div>
 </header>
 
@@ -702,19 +832,17 @@
 <section class="story">
   <div class="container">
     <div class="story-card reveal reveal-d4">
-      <p class="story-lead">יש משפחות שבן לילה — הכל משתנה.</p>
-      <p>
-        אם ואישה לשלושה ילדים מתמודדת בימים אלה עם אחד הרגעים הקשים בחייה. בעלה נעצר ונמצא בהליך משפטי מורכב, והיא נותרה לבדה — מנסה להחזיק את הבית, לשמור על שגרה לילדים, ולממן הגנה משפטית שעלויותיה כבדות מנשוא.
-      </p>
-
-      <div class="pullquote">
+      <p class="story-lead" data-en="Some families — overnight, everything changes.">יש משפחות שבן לילה — הכל משתנה.</p>
+      <p data-en="A wife and mother of four is facing one of the hardest moments of her life. Her husband was arrested and is now in a complex legal proceeding, leaving her alone with a young child who has experienced a difficult upheaval and needs emotional support. She is trying to hold the home together, keep a routine for the children, and finance a legal defense whose costs are unbearable.">
+אישה ואם לארבעה ילדים מתמודדת בימים אלה עם אחד הרגעים הקשים בחייה. בעלה נעצר ונמצא בהליך משפטי מורכב, והיא נותרה לבדה, עם ילד קטן שחווה טלטלה קשה ונזקק לליווי ריגשי. היא מנסה להחזיק את הבית, לשמור על שגרה לילדים, ולממן הגנה משפטית שעלויותיה כבדות מנשוא.
+      <div class="pullquote" data-en="This is a normative family that found itself in this situation against its will. Each one of us can help hold things together for the children.">
         מדובר במשפחה נורמטיבית שנקלעה לסיטואציה בעל כורחה. כל אחד מאיתנו יכול לעזור להחזיק את המצב עבור הילדים.
       </div>
 
-      <p>
+      <p data-en='So far, the lawyers have received <span class="highlight">only about a third</span> of the amount needed to continue the representation. Without completing the funding — the family&#39;s defense could be substantially harmed.'>
         עד כה, עורכי הדין קיבלו <span class="highlight">כשליש בלבד</span> מהסכום הנדרש להמשך הייצוג. בלי השלמת המימון — ההגנה על המשפחה עלולה להיפגע באופן מהותי.
       </p>
-      <p>
+      <p data-en="And this family, like every family, deserves someone to stand beside them. If there is a small corner of compassion in your heart — <strong>now is the time.</strong> Every amount, every share, every prayer.">
         ולמשפחה הזו, כמו לכל משפחה, מגיע שמישהו יעמוד לצידה. אם יש בלבכם פינה קטנה של חמלה — <strong>זה הזמן.</strong> כל סכום, כל שיתוף, כל תפילה.
       </p>
     </div>
@@ -725,13 +853,13 @@
 <section class="progress-section" aria-label="התקדמות הקמפיין">
   <div class="container">
     <div class="progress-card reveal reveal-d5">
-      <div class="progress-label">גויס עד כה</div>
+      <div class="progress-label" data-en="Raised So Far">גויס עד כה</div>
       <div class="progress-percent">~33%</div>
       <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
         <div class="progress-fill" id="progressFill"></div>
       </div>
       <div class="progress-caption">
-        <span>כל תרומה מקרבת את המשפחה לרגע שבו יוכלו לנשום מחדש</span>
+        <span data-en="Every donation brings the family closer to the moment they can breathe again">כל תרומה מקרבת את המשפחה לרגע שבו יוכלו לנשום מחדש</span>
         <span class="heart" aria-hidden="true">♥</span>
 
       </div>
@@ -742,46 +870,95 @@
 <!-- DONATE -->
 <section class="donate" id="donate">
   <div class="container">
-    <h2 class="section-title reveal reveal-d5">איך תורמים?</h2>
-    <p class="section-sub reveal reveal-d5">100% מהתרומות מועברות ישירות לשכר טרחת עורכי הדין</p>
+    <h2 class="section-title reveal reveal-d5" data-en="How to Donate">איך תורמים?</h2>
+    <p class="section-sub reveal reveal-d5" data-en="100% of donations go directly to the lawyers' fees">100% מהתרומות מועברות ישירות לשכר טרחת עורכי הדין</p>
 
     <div class="donate-grid">
       <!-- BIT -->
       <div class="donate-card bit reveal reveal-d6">
         <div class="donate-icon" aria-hidden="true">💙</div>
-        <h3>ביט</h3>
-        <p class="hint">מהיר, פשוט, ישיר</p>
+        <h3 data-en="Bit">ביט</h3>
+        <p class="hint" data-en="Fast, simple, direct">מהיר, פשוט, ישיר</p>
         <div class="field">
-          <span class="field-label">מספר</span>
+          <span class="field-label" data-en="Number">מספר</span>
           <span class="field-value" id="bitNumber">050-9155150</span>
-          <button class="copy-btn" data-copy="0509155150" aria-label="העתק מספר ביט">העתק</button>
+          <button class="copy-btn" data-copy="0509155150" aria-label="Copy Bit number" data-en="Copy">העתק</button>
         </div>
         <a class="bit-cta" href="tel:0509155150">
           <span aria-hidden="true">📱</span>
-          <span>פתח בטלפון</span>
+          <span data-en="Open on phone">פתח בטלפון</span>
         </a>
       </div>
 
       <!-- BANK -->
       <div class="donate-card bank reveal reveal-d6">
         <div class="donate-icon" aria-hidden="true">🏦</div>
-        <h3>העברה בנקאית</h3>
-        <p class="hint">על שם המוטבת בחשבון</p>
+        <h3 data-en="Bank Transfer">העברה בנקאית</h3>
+        <p class="hint" data-en="In the beneficiary's account name">על שם המוטבת בחשבון</p>
         <div class="field">
-          <span class="field-label">בנק</span>
-          <span class="field-value he">יהב (4)</span>
+          <span class="field-label" data-en="Bank">בנק</span>
+          <span class="field-value">04</span>
+          <button class="copy-btn" data-copy="04" aria-label="Copy bank number" data-en="Copy">העתק</button>
         </div>
         <div class="field">
-          <span class="field-label">סניף</span>
+          <span class="field-label" data-en="Branch">סניף</span>
           <span class="field-value">133</span>
-          <button class="copy-btn" data-copy="133" aria-label="העתק מספר סניף">העתק</button>
+          <button class="copy-btn" data-copy="133" aria-label="Copy branch number" data-en="Copy">העתק</button>
         </div>
         <div class="field">
-          <span class="field-label">חשבון</span>
-          <span class="field-value">413324783</span>
-          <button class="copy-btn" data-copy="413324783" aria-label="העתק מספר חשבון">העתק</button>
+          <span class="field-label" data-en="Account">חשבון</span>
+          <span class="field-value">247783</span>
+          <button class="copy-btn" data-copy="247783" aria-label="Copy account number" data-en="Copy">העתק</button>
         </div>
       </div>
+    </div>
+
+    <!-- INTERNATIONAL -->
+    <div class="intl-card reveal reveal-d6">
+      <div class="donate-icon intl-icon" aria-hidden="true">🌍</div>
+      <h3 data-en="International Transfer">תרומה מחו״ל · International Transfer</h3>
+      <p class="hint" dir="ltr">For donors abroad — use the IBAN / SWIFT details below</p>
+
+      <div class="field">
+        <span class="field-label">Account Name</span>
+        <span class="field-value" dir="ltr">ATBARIAN ZIPORA</span>
+        <button class="copy-btn" data-copy="ATBARIAN ZIPORA" aria-label="Copy account name">Copy</button>
+      </div>
+      <div class="field">
+        <span class="field-label">IBAN</span>
+        <span class="field-value" dir="ltr">IL800041330000000247783</span>
+        <button class="copy-btn" data-copy="IL800041330000000247783" aria-label="Copy IBAN">Copy</button>
+      </div>
+      <div class="field">
+        <span class="field-label">Account No.</span>
+        <span class="field-value" dir="ltr">04133247783</span>
+        <button class="copy-btn" data-copy="04133247783" aria-label="Copy account number">Copy</button>
+      </div>
+
+      <div class="intl-subsection">
+        <div class="intl-sub-title" dir="ltr">For ILS transfers — SWIFT</div>
+        <div class="field">
+          <span class="field-label">Beneficiary Bank</span>
+          <span class="field-value" dir="ltr">BYAHILIT</span>
+          <button class="copy-btn" data-copy="BYAHILIT" aria-label="Copy SWIFT code">Copy</button>
+        </div>
+      </div>
+
+      <div class="intl-subsection">
+        <div class="intl-sub-title" dir="ltr">For Foreign Currency — SWIFT</div>
+        <div class="field">
+          <span class="field-label">Beneficiary Bank</span>
+          <span class="field-value" dir="ltr">BYAHILIT</span>
+          <button class="copy-btn" data-copy="BYAHILIT" aria-label="Copy beneficiary SWIFT">Copy</button>
+        </div>
+        <div class="field">
+          <span class="field-label">Intermediary Bank</span>
+          <span class="field-value" dir="ltr">MIZBILIT</span>
+          <button class="copy-btn" data-copy="MIZBILIT" aria-label="Copy intermediary SWIFT">Copy</button>
+        </div>
+      </div>
+
+      <p class="intl-note" dir="ltr">Bank Yahav Ltd. · Branch 133 · Israel</p>
     </div>
 
   </div>
@@ -791,18 +968,18 @@
 <section class="share">
   <div class="container">
     <div class="share-card reveal reveal-d6">
-      <h2 class="section-title">שתפו — זה עוזר יותר ממה שאתם חושבים</h2>
-      <p>כל שיתוף מגיע לעוד לב אחד שאולי יחליט לעזור.<br>אנא העבירו לחברים, למשפחה, ולקבוצות. 🙏</p>
+      <h2 class="section-title" data-en="Share — It Helps More Than You Think">שתפו — זה עוזר יותר ממה שאתם חושבים</h2>
+      <p data-en="Every share reaches another heart that might decide to help.<br>Please forward to friends, family, and groups. 🙏">כל שיתוף מגיע לעוד לב אחד שאולי יחליט לעזור.<br>אנא העבירו לחברים, למשפחה, ולקבוצות. 🙏</p>
       <div class="share-buttons">
         <a class="share-btn whatsapp" id="shareWhatsapp" href="#" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          ווטסאפ
+          <span data-en="WhatsApp">ווטסאפ</span>
         </a>
         <button class="share-btn" id="shareCopy">
-          <span aria-hidden="true">🔗</span> העתק קישור
+          <span aria-hidden="true">🔗</span> <span data-en="Copy Link">העתק קישור</span>
         </button>
         <button class="share-btn" id="shareNative">
-          <span aria-hidden="true">📤</span> שתף
+          <span aria-hidden="true">📤</span> <span data-en="Share">שתף</span>
         </button>
       </div>
     </div>
@@ -811,14 +988,64 @@
 
 <footer>
   <div class="container">
-    <div class="blessing">תודה מעומק הלב · תבורכו</div>
-    <div>בעבור המשפחה</div>
+    <div class="blessing" data-en="Thank you from the bottom of our hearts · Be blessed">תודה מעומק הלב · תבורכו</div>
+    <div data-en="On behalf of the family">בעבור המשפחה</div>
   </div>
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite">הועתק ללוח 📋</div>
+<div class="toast" id="toast" role="status" aria-live="polite" data-en="Copied to clipboard 📋">הועתק ללוח 📋</div>
 
 <script>
+  // ===== Language Toggle =====
+  const STORAGE_KEY = 'lang_pref';
+  const langToggle = document.getElementById('langToggle');
+  const langLabel = document.getElementById('langLabel');
+  let currentLang = localStorage.getItem(STORAGE_KEY) || 'he';
+
+  // Cache original Hebrew content for every translatable element on first load
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.setAttribute('data-he', el.innerHTML);
+  });
+
+  function applyLang(lang) {
+    document.documentElement.lang = (lang === 'en') ? 'en' : 'he';
+    document.documentElement.dir = (lang === 'en') ? 'ltr' : 'rtl';
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.innerHTML = (lang === 'en')
+        ? el.getAttribute('data-en')
+        : el.getAttribute('data-he');
+    });
+    langLabel.textContent = (lang === 'en') ? 'עב' : 'EN';
+    langToggle.setAttribute('aria-label',
+      (lang === 'en') ? 'החלף שפה לעברית' : 'Switch language to English');
+    currentLang = lang;
+    localStorage.setItem(STORAGE_KEY, lang);
+  }
+
+  applyLang(currentLang);
+
+  langToggle.addEventListener('click', () => {
+    applyLang(currentLang === 'en' ? 'he' : 'en');
+  });
+
+  const T = {
+    he: {
+      copied: 'הועתק',
+      copiedCheck: 'הועתק ✓',
+      copy: 'העתק',
+      copyFail: 'לא ניתן להעתיק',
+      linkCopied: 'הקישור הועתק ✓'
+    },
+    en: {
+      copied: 'Copied',
+      copiedCheck: 'Copied ✓',
+      copy: 'Copy',
+      copyFail: 'Could not copy',
+      linkCopied: 'Link copied ✓'
+    }
+  };
+  const t = (key) => T[currentLang][key];
+
   // ===== Toast =====
   const toast = document.getElementById('toast');
   let toastTimer;
@@ -835,16 +1062,16 @@
       const text = btn.getAttribute('data-copy');
       try {
         await navigator.clipboard.writeText(text);
-        const orig = btn.textContent;
-        btn.textContent = 'הועתק ✓';
+        const orig = btn.innerHTML;
+        btn.textContent = t('copiedCheck');
         btn.classList.add('copied');
-        showToast('הועתק: ' + text);
+        showToast(t('copied') + ': ' + text);
         setTimeout(() => {
-          btn.textContent = orig;
+          btn.innerHTML = orig;
           btn.classList.remove('copied');
         }, 1600);
       } catch (e) {
-        showToast('לא ניתן להעתיק');
+        showToast(t('copyFail'));
       }
     });
   });
@@ -859,9 +1086,9 @@
   document.getElementById('shareCopy').addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(shareUrl);
-      showToast('הקישור הועתק ✓');
+      showToast(t('linkCopied'));
     } catch (e) {
-      showToast('לא ניתן להעתיק');
+      showToast(t('copyFail'));
     }
   });
 
